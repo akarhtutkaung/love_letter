@@ -4,7 +4,7 @@
 
 A beautiful, interactive digital love letter with an animated envelope.
 
-**[Live Demo](https://tootterhalf.web.app/?template=love_letter)**
+**[Live Demo](https://tootterhalf.web.app/templates/love_letter/index.html)**
 
 ## 💕 Part of
 
