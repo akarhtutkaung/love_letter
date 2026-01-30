@@ -228,7 +228,7 @@ body {
 .buttons {
     display: flex;
     gap: 15px;
-    margin-top: auto;
+    margin-top: 10px;
     padding-bottom: 10px;
 }
 
