@@ -1,5 +1,7 @@
 # 💌 Love Letter
 
+*@author: [Akar Htut Kaung (aka. Wu Qing Hai)](https://github.com/akarhtutkaung)*
+
 A beautiful, interactive digital love letter with an animated envelope.
 
 **[Live Demo](https://tootterhalf.web.app/?template=love_letter)**
