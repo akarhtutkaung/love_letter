@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="A digital valentine love letter. Will you be my Valentine?">
+    <meta property="og:title" content="A Letter For You 💌">
+    <meta property="og:description" content="A digital valentine love letter. Will you be my Valentine?">
+    <meta property="og:image" content="assets/us.jpg">
+    <link rel="icon"
+        href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💌</text></svg>">
+
+    <title>A Letter For You 💌</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Playfair+Display:ital,wght@0,400;1,400&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+
+    <main class="container">
+        <!-- Audio (Auto-plays on interaction) -->
+        <audio id="bg-music" loop>
+            <source src="assets/music.mp3" type="audio/mpeg">
+        </audio>
+        <!-- Envelope Section -->
+        <div id="envelope-container" class="envelope-wrapper" role="button" tabindex="0" aria-label="Open Envelope">
+            <div class="envelope" id="envelope">
+                <div class="front flap"></div>
+                <div class="front pocket"></div>
+                <div class="letter">
+                    <div class="letter-content">
+                        <p class="date">February 14, 2025</p>
+                        <p class="greeting">My Dearest,</p>
+                        <p class="body-text">
+                            From the moment I met you, my life has been filled with colors I never knew existed.
+                            You are my best friend, my confidant, and my greatest adventure.
+                        </p>
+                        <p class="body-text">
+                            I prepared a little question for you below...
+                        </p>
+                        <div class="photo-clip">
+                            <img src="assets/image.jpg" alt="Us together">
+                        </div>
+                        <br>
+                        <h2 class="question">Will you be my Valentine?</h2>
+
+                        <div class="buttons">
+                            <button id="yes-btn" class="btn yes">Yes, Always 💍</button>
+                            <button id="no-btn" class="btn no">No 💔</button>
+                        </div>
+                    </div>
+                </div>
+                <!-- Seal -->
+                <div class="heart-seal" id="seal" aria-hidden="true">❤️</div>
+            </div>
+            <p class="instruction">Tap to Open 💌</p>
+        </div>
+    </main>
+
+    <!-- Celebration Screen -->
+    <div id="celebration" class="celebration hidden">
+        <div class="content">
+            <h1>I knew you'd say Yes! ❤️</h1>
+            <p>I love you so much!</p>
+            <p>Dinner is reserved @ 7PM 🍷</p>
+            <div class="heart-rain"></div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

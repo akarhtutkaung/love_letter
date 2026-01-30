@@ -1,0 +1,408 @@
+:root {
+    --bg-color: #fcebd5;
+    --envelope-color: #f69d3c;
+    --envelope-flap: #e88d2d;
+    --paper-color: #fffdf0;
+    --text-color: #4a4a4a;
+    --accent-red: #d00000;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--bg-color);
+    background-image:
+        radial-gradient(#e5cea8 1px, transparent 1px),
+        radial-gradient(#e5cea8 1px, transparent 1px);
+    background-size: 20px 20px;
+    background-position: 0 0, 10px 10px;
+    font-family: 'Playfair Display', serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-items: center;
+    min-height: 100vh;
+    min-height: 100dvh;
+    overflow: hidden;
+}
+
+.container {
+    perspective: 1000px;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.envelope-wrapper {
+    position: relative;
+    cursor: pointer;
+    transition: transform 0.6s;
+    will-change: transform;
+}
+
+.envelope-wrapper:hover {
+    transform: scale(1.02);
+}
+
+.envelope-wrapper.open {
+    cursor: default;
+    transform: scale(1);
+}
+
+/* Instruction Text */
+.instruction {
+    text-align: center;
+    margin-top: 15px;
+    font-family: 'Dancing Script', cursive;
+    font-size: 1.5rem;
+    color: #888;
+    animation: bounce 2s infinite;
+}
+
+.envelope-wrapper.open .instruction {
+    display: none;
+}
+
+@keyframes bounce {
+
+    0%,
+    20%,
+    50%,
+    80%,
+    100% {
+        transform: translateY(0);
+    }
+
+    40% {
+        transform: translateY(-10px);
+    }
+
+    60% {
+        transform: translateY(-5px);
+    }
+}
+
+.envelope {
+    position: relative;
+    width: 300px;
+    height: 200px;
+    background-color: var(--envelope-color);
+    border-radius: 0 0 10px 10px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+}
+
+/* Front Flap (Top) */
+.front.flap {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 0;
+    border-left: 150px solid transparent;
+    border-right: 150px solid transparent;
+    border-top: 110px solid var(--envelope-flap);
+    transform-origin: top;
+    transform-origin: top;
+    transition: transform 0.6s 0.2s, z-index 0.2s;
+    will-change: transform;
+    z-index: 5;
+    border-radius: 5px;
+}
+
+/* Pocket (Bottom/Sides) */
+.front.pocket {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 0;
+    border-left: 150px solid var(--envelope-color);
+    border-right: 150px solid var(--envelope-color);
+    border-bottom: 110px solid #e08b2c;
+    border-radius: 0 0 10px 10px;
+    z-index: 4;
+    border-top: 90px solid transparent;
+}
+
+/* The Letter */
+.letter {
+    position: absolute;
+    top: 10px;
+    left: 15px;
+    width: 270px;
+    height: 180px;
+    background-color: var(--paper-color);
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    margin-left: 0;
+    /* Explicit start for transition */
+
+    /* 
+       Animation Strategy:
+       1. Flap opens (0s - 0.6s)
+       2. Letter moves UP only (0.6s - 1.1s)
+       3. Letter expands and centers (1.1s - 1.7s)
+    */
+    transition:
+        top 0.5s 0.6s ease-in-out,
+        z-index 0.1s 0.6s,
+        transform 0.6s 1.1s ease-in-out,
+        width 0.6s 1.1s ease-in-out,
+        left 0.6s 1.1s ease-in-out,
+        margin-left 0.6s 1.1s ease-in-out,
+        /* Added for mobile centering */
+        height 0.6s 1.1s ease-in-out;
+
+    z-index: 1;
+    overflow: hidden;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.letter-content {
+    opacity: 0;
+    transition: opacity 0.5s 1.8s;
+    height: 100%;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.greeting {
+    font-weight: bold;
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+    align-self: flex-start;
+}
+
+.date {
+    font-size: 0.8rem;
+    color: #888;
+    align-self: flex-end;
+    margin-bottom: 10px;
+}
+
+.body-text {
+    font-size: 1rem;
+    line-height: 1.5;
+    margin-bottom: 15px;
+    text-align: left;
+}
+
+.question {
+    font-family: 'Dancing Script', cursive;
+    color: var(--accent-red);
+    font-size: 1.8rem;
+    margin: 5px 0 15px 0;
+    /* Reduced top margin significantly */
+}
+
+.photo-clip {
+    width: 200px;
+    height: 200px;
+    background: white;
+    padding: 5px;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+    transform: rotate(3deg);
+    margin: 5px auto 0 auto;
+    /* Reduced margins */
+}
+
+.photo-clip img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Buttons */
+.buttons {
+    display: flex;
+    gap: 15px;
+    margin-top: auto;
+    padding-bottom: 10px;
+}
+
+.btn {
+    padding: 8px 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-family: 'Playfair Display', serif;
+    font-weight: bold;
+    transition: all 0.3s;
+}
+
+.yes {
+    background-color: var(--accent-red);
+    color: white;
+}
+
+.yes:hover {
+    background-color: #a00000;
+}
+
+.no {
+    background-color: #ccc;
+    color: #555;
+    position: relative;
+}
+
+/* Heart Seal */
+.heart-seal {
+    position: absolute;
+    top: 90px;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 3rem;
+    color: var(--accent-red);
+    z-index: 6;
+    transition: opacity 0.4s;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* Animation State: Open */
+.envelope-wrapper.open .front.flap {
+    transform: rotateX(180deg);
+    z-index: 0;
+}
+
+.envelope-wrapper.open .heart-seal {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.envelope-wrapper.open .letter {
+    /* Step 1: Move Up */
+    top: 50%;
+    z-index: 10;
+
+    /* Step 2: Expand & Center */
+    left: 50%;
+    width: 350px;
+    height: 78vh;
+    max-height: 800px;
+
+    /* True centering */
+    transform: translate(-50%, -50%);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+}
+
+.envelope-wrapper.open .letter-content {
+    opacity: 1;
+}
+
+/* Celebration Overlay */
+.celebration {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.95);
+    z-index: 100;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.celebration.hidden {
+    display: none;
+}
+
+.celebration h1 {
+    font-family: 'Dancing Script', cursive;
+    font-size: 4rem;
+    color: var(--accent-red);
+}
+
+/* Responsive adjustments */
+@media (max-width: 480px) {
+    .envelope {
+        width: 280px;
+    }
+
+    .front.flap {
+        border-left-width: 140px;
+        border-right-width: 140px;
+    }
+
+    .front.pocket {
+        border-left-width: 140px;
+        border-right-width: 140px;
+    }
+
+    .letter {
+        width: 250px;
+    }
+
+    .envelope-wrapper.open .letter {
+        /* Fit in one screen logic with true centering */
+        top: 50%;
+        /* Center of envelope */
+        left: 50%;
+        /* Center of envelope */
+        width: 90vw;
+        height: 78vh;
+        max-height: 800px;
+        margin-left: 0;
+        /* Reset desktop margin logic */
+
+        /*
+           Translate (-50%, -50%) moves the element's own center to the top/left coordinates.
+           Since top/left are at the envelope's center, the letter becomes centered on the envelope.
+        */
+        transform: translate(-50%, -50%);
+    }
+
+    .question {
+        font-size: 1.5rem;
+    }
+
+    .celebration h1 {
+        font-size: 2.5rem;
+    }
+
+    .celebration h1 {
+        font-size: 2.5rem;
+    }
+}
+
+/* Animations moved from JS */
+@keyframes shake {
+    0% {
+        transform: translateX(0);
+    }
+
+    25% {
+        transform: translateX(-5px) rotate(-5deg);
+    }
+
+    50% {
+        transform: translateX(5px) rotate(5deg);
+    }
+
+    75% {
+        transform: translateX(-5px) rotate(-5deg);
+    }
+
+    100% {
+        transform: translateX(0);
+    }
+}
+
+@keyframes fall {
+    to {
+        transform: translateY(110vh) rotate(360deg);
+    }
+}
